@@ -1,5 +1,5 @@
 {
-  "name": "expo-toss-payments-webview",
+  "name": "expo-tosspayments-webview",
   "version": "1.0.0",
   "description": "Expo config plugin for integrating Toss Payments WebView with deep linking support",
   "main": "build/index.js",

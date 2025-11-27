@@ -1,19 +1,19 @@
-# expo-toss-payments-webview
+# expo-tosspayments-webview
 
 토스페이먼츠 WebView 연동을 위한 Expo Config Plugin입니다. Android와 iOS에서 토스페이먼츠 결제 완료 후 앱으로 돌아오는 딥링크를 지원합니다.
 
 ## 📦 설치
 
 ```bash
-npm install expo-toss-payments-webview
+npm install expo-tosspayments-webview
 ```
 
 ```bash
-yarn add expo-toss-payments-webview
+yarn add expo-tosspayments-webview
 ```
 
 ```bash
-pnpm add expo-toss-payments-webview
+pnpm add expo-tosspayments-webview
 ```
 
 ## 🚀 사용법
@@ -25,7 +25,7 @@ pnpm add expo-toss-payments-webview
 ```json
 {
   "expo": {
-    "plugins": ["expo-toss-payments-webview"]
+    "plugins": ["expo-tosspayments-webview"]
   }
 }
 ```
@@ -37,7 +37,7 @@ React Native WebView에서 결제 완료 후 앱으로 돌아오기:
 ```tsx
 import { Linking } from "react-native";
 import WebView, { type WebViewNavigation } from "react-native-webview";
-import { shouldLoadURL } from "expo-toss-payments-webview";
+import { shouldLoadURL } from "expo-tosspayments-webview";
 
 export default function PaymentWebView() {
   const onShouldStartLoadWithRequest = async (request: WebViewNavigation) => {

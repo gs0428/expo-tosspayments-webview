@@ -13,7 +13,7 @@ import { withIosQueries } from "./plugins/with-ios-queries";
  * ```ts
  * // app.json 또는 app.config.js
  * {
- *   plugins: ["expo-toss-payments-webview"]
+ *   plugins: ["expo-tosspayments-webview"]
  * }
  * ```
  */
