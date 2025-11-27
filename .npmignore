@@ -1,0 +1,15 @@
+src/
+example/
+node_modules/
+.husky/
+.vscode/
+.DS_Store
+.git/
+.gitignore
+.eslint*
+.prettierrc*
+.prettierignore
+tsconfig.json
+eslint.config.js
+pnpm-lock.yaml
+*.map

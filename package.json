@@ -1,0 +1,53 @@
+{
+  "name": "expo-toss-payments-webview",
+  "version": "1.0.0",
+  "description": "Expo config plugin for integrating Toss Payments WebView with deep linking support",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "pnpm build",
+    "lint": "eslint --fix \"**/*.{ts,tsx,md}\"",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "prepare": "husky"
+  },
+  "keywords": [
+    "expo",
+    "toss",
+    "tosspayments",
+    "webview",
+    "config-plugin",
+    "react-native",
+    "deep-linking"
+  ],
+  "author": "gs0428 <lider28@naver.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gs0428/expo-tosspayments-webview.git"
+  },
+  "peerDependencies": {
+    "@expo/config-plugins": ">=7.0.0",
+    "expo": ">=49.0.0",
+    "react-native": ">=0.72.0",
+    "react-native-webview": ">=13.0.0"
+  },
+  "dependencies": {
+    "@expo/config-plugins": "^7.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@typescript-eslint/eslint-plugin": "^8.48.0",
+    "@typescript-eslint/parser": "^8.48.0",
+    "eslint": "^9.25.0",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "husky": "^9.1.7",
+    "prettier": "^3.6.2",
+    "typescript": "~5.9.2"
+  },
+  "files": [
+    "build",
+    "app.plugin.js"
+  ],
+  "packageManager": "pnpm@10.10.0+sha512.d615db246fe70f25dcfea6d8d73dee782ce23e2245e3c4f6f888249fb568149318637dca73c2c5c8ef2a4ca0d5657fb9567188bfab47f566d1ee6ce987815c39"
+}
