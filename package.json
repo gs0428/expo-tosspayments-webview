@@ -9,9 +9,9 @@
       "types": "./build/index.d.ts",
       "default": "./build/index.js"
     },
-    "./util": {
-      "types": "./build/util.d.ts",
-      "default": "./build/util.js"
+    "./utils": {
+      "types": "./build/utils.d.ts",
+      "default": "./build/utils.js"
     }
   },
   "scripts": {

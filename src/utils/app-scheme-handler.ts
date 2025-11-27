@@ -10,11 +10,11 @@ export interface LinkingModule {
 }
 
 /**
- * URL이 앱 스킴인지 확인하는 함수
+ * URL이 토스페이먼츠 결제 관련 앱 스킴인지 확인하는 함수
  * @param url - 확인할 URL
- * @returns 앱 스킴인지 여부
+ * @returns 결제 관련 앱 스킴인지 여부
  */
-export function isAppScheme(url: string): boolean {
+export function isPaymentAppScheme(url: string): boolean {
   // 기본 검증: http, https가 아닌 스킴은 앱 스킴으로 간주
   if (!url.startsWith("http://") && !url.startsWith("https://")) {
     // iOS 스킴 확인
@@ -51,8 +51,8 @@ export function isAppScheme(url: string): boolean {
  * @returns WebView에서 로드를 계속할지 여부
  */
 export function shouldLoadURL(url: string, linking: LinkingModule): boolean {
-  // 앱 스킴이면 외부 앱으로 열고 WebView 로드 방지
-  if (isAppScheme(url)) {
+  // 결제 관련 앱 스킴이면 외부 앱으로 열고 WebView 로드 방지
+  if (isPaymentAppScheme(url)) {
     // 비동기로 처리하되 기다리지 않음 (fire-and-forget)
     linking.openURL(url).catch((error) => {
       console.warn("[TossPaymentsWebView] Failed to open app scheme:", error);

@@ -37,7 +37,7 @@ React Native WebView에서 결제 완료 후 앱으로 돌아오기:
 ```tsx
 import { Linking } from "react-native";
 import WebView, { type WebViewNavigation } from "react-native-webview";
-import { shouldLoadURL } from "expo-tosspayments-webview/util";
+import { shouldLoadURL } from "expo-tosspayments-webview/utils";
 
 export default function PaymentWebView() {
   const onShouldStartLoadWithRequest = (request: WebViewNavigation) => {
@@ -60,13 +60,24 @@ export default function PaymentWebView() {
 
 ### 유틸리티 함수
 
-#### `isAppScheme(url: string): boolean`
+모든 유틸리티 함수는 `expo-tosspayments-webview/utils`에서 import할 수 있습니다.
 
-URL이 앱 스킴인지 확인합니다.
+#### `isPaymentAppScheme(url: string): boolean`
+
+URL이 토스페이먼츠 결제 관련 앱 스킴인지 확인합니다.
+
+```tsx
+import { isPaymentAppScheme } from "expo-tosspayments-webview/utils";
+
+const url = "supertoss://payment";
+if (isPaymentAppScheme(url)) {
+  // 결제 관련 앱 스킴 URL 처리
+}
+```
 
 #### `shouldLoadURL(url: string, linking: LinkingModule): boolean`
 
-WebView의 `onShouldStartLoadWithRequest` 콜백에서 사용할 수 있는 헬퍼 함수입니다. 앱 스킴 URL을 감지하면 외부 앱을 열고 WebView에서 로드를 중단합니다. `linking` 파라미터는 필수입니다.
+WebView의 `onShouldStartLoadWithRequest` 콜백에서 사용할 수 있는 헬퍼 함수입니다. 토스페이먼츠 결제 관련 앱 스킴 URL을 감지하면 외부 앱을 열고 WebView에서 로드를 중단합니다. `linking` 파라미터는 필수입니다.
 
 ## ⚙️ 요구사항
 

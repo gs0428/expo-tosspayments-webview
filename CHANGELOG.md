@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.4] - 2025-11-27
+
+### Changed
+
+- `util.ts` 파일명을 `utils.ts`로 변경
+- `package.json` exports 필드 경로를 `./util`에서 `./utils`로 변경
+- `isAppScheme` 함수명을 `isPaymentAppScheme`으로 변경 (토스페이먼츠 결제 관련 앱 스킴 검사 함수로 명확화)
+- README에서 런타임 유틸리티 import 경로를 `expo-tosspayments-webview/utils`로 변경
+- `shouldLoadURL` 함수 내부 주석을 "결제 관련 앱 스킴"으로 명확화
+
 ## [1.0.3] - 2025-11-27
 
 ### Added
@@ -17,7 +27,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 플러그인 함수를 `index.ts`로 이동 (기존 `plugin.ts` 내용)
 - 런타임 유틸리티 함수를 `util.ts`로 이동 (기존 `index.ts` 내용)
 - `app.plugin.js`가 `build/index.js`를 참조하도록 변경
-- README에서 런타임 유틸리티 import 경로를 `expo-tosspayments-webview/util`로 변경
 
 ### Removed
 
