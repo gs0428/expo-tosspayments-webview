@@ -46,8 +46,9 @@ export default function PaymentWebView() {
 
   return (
     <WebView
-      source={{ uri: "https://your-payment-url.com" }}
+      source={{ uri: "https://webview-url.com" }}
       onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
+      style={{ flex: 1 }}
     />
   );
 }

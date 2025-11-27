@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- 배포 자동화 스크립트 (`scripts/release.js`)
+
+### Changed
+
+- 플러그인 코드를 `plugin.ts`로 분리
+- `index.ts`는 런타임 유틸리티만 export하도록 변경
+- `app.plugin.js`가 `build/plugin.js`를 참조하도록 변경
+- `package.json` exports 필드 정리 (`./package.json` 및 `./runtime` 경로 제거)
+
+### Removed
+
+- `runtime.ts` 파일 제거 (기능은 `index.ts`로 이동)
+
 ## [1.0.1] - 2025-11-27
 
 ### Changed
