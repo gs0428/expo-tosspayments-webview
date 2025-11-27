@@ -30,6 +30,6 @@ const withTossPaymentsWebView: ConfigPlugin = (config) => {
 export default withTossPaymentsWebView;
 
 // 유틸리티 함수들도 export
-export { handleAppScheme, isAppScheme, shouldLoadURL } from "./utils/app-scheme-handler";
+export { isAppScheme, shouldLoadURL } from "./utils/app-scheme-handler";
 
 export type { LinkingModule } from "./utils/app-scheme-handler";

@@ -1,6 +1,5 @@
 import { TOSS_PAYMENTS_ANDROID_PACKAGES } from "../constants/android-packages";
 import { TOSS_PAYMENTS_IOS_SCHEMES } from "../constants/ios-schemes";
-import { isRecord } from "../types/guards";
 
 /**
  * React Native Linking 모듈 타입 (런타임에서만 사용)
@@ -8,20 +7,6 @@ import { isRecord } from "../types/guards";
 export interface LinkingModule {
   canOpenURL(url: string): Promise<boolean>;
   openURL(url: string): Promise<void>;
-}
-
-/**
- * 타입 가드: LinkingModule인지 확인
- */
-function isLinkingModule(value: unknown): value is LinkingModule {
-  if (!isRecord(value)) {
-    return false;
-  }
-
-  const canOpenURL = value["canOpenURL"];
-  const openURL = value["openURL"];
-
-  return typeof canOpenURL === "function" && typeof openURL === "function";
 }
 
 /**
@@ -58,66 +43,20 @@ export function isAppScheme(url: string): boolean {
 }
 
 /**
- * 앱 스킴 URL을 처리하는 함수
- * 런타임에서 사용되며 react-native의 Linking 모듈이 필요합니다.
- *
- * @param url - 앱 스킴 URL
- * @param linking - React Native의 Linking 모듈 (선택적, 런타임에서 주입)
- * @returns 처리 성공 여부
- */
-export async function handleAppScheme(url: string, linking?: LinkingModule): Promise<boolean> {
-  // 런타임에서 Linking 모듈이 제공되지 않으면 동적 import 시도
-  let Linking: LinkingModule;
-
-  if (linking) {
-    Linking = linking;
-  } else {
-    try {
-      const reactNative = await import("react-native");
-
-      if (typeof reactNative === "object" && reactNative !== null && "Linking" in reactNative) {
-        const linkingModule = reactNative.Linking;
-        if (isLinkingModule(linkingModule)) {
-          Linking = linkingModule;
-        } else {
-          console.warn("[TossPaymentsWebView] Linking module not found");
-          return false;
-        }
-      } else {
-        console.warn("[TossPaymentsWebView] Linking module not found");
-        return false;
-      }
-    } catch (error) {
-      console.warn("[TossPaymentsWebView] Failed to load react-native:", error);
-      return false;
-    }
-  }
-
-  try {
-    const canOpen = await Linking.canOpenURL(url);
-    if (canOpen) {
-      await Linking.openURL(url);
-      return true;
-    }
-    return false;
-  } catch (error) {
-    console.warn("[TossPaymentsWebView] Failed to open app scheme:", error);
-    return false;
-  }
-}
-
-/**
  * WebView의 shouldStartLoadWithRequest 콜백용 헬퍼 함수
  * 런타임에서 사용되며 react-native의 Linking 모듈이 필요합니다.
  *
  * @param url - 로드하려는 URL
- * @param linking - React Native의 Linking 모듈 (선택적, 런타임에서 주입)
+ * @param linking - React Native의 Linking 모듈 (필수)
  * @returns WebView에서 로드를 계속할지 여부
  */
-export async function shouldLoadURL(url: string, linking?: LinkingModule): Promise<boolean> {
+export function shouldLoadURL(url: string, linking: LinkingModule): boolean {
   // 앱 스킴이면 외부 앱으로 열고 WebView 로드 방지
   if (isAppScheme(url)) {
-    await handleAppScheme(url, linking);
+    // 비동기로 처리하되 기다리지 않음 (fire-and-forget)
+    linking.openURL(url).catch((error) => {
+      console.warn("[TossPaymentsWebView] Failed to open app scheme:", error);
+    });
     return false; // WebView에서 로드하지 않음
   }
 

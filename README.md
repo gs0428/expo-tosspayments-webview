@@ -40,7 +40,7 @@ import WebView, { type WebViewNavigation } from "react-native-webview";
 import { shouldLoadURL } from "expo-tosspayments-webview";
 
 export default function PaymentWebView() {
-  const onShouldStartLoadWithRequest = async (request: WebViewNavigation) => {
+  const onShouldStartLoadWithRequest = (request: WebViewNavigation) => {
     return shouldLoadURL(request.url, Linking);
   };
 
@@ -53,7 +53,7 @@ export default function PaymentWebView() {
 }
 ```
 
-> **💡 참고**: `Linking` 모듈을 전달하지 않으면 라이브러리가 자동으로 `react-native`에서 로드합니다. 하지만 명시적으로 전달하는 것이 권장됩니다.
+> **💡 참고**: `Linking` 모듈은 필수 파라미터입니다. React Native의 `Linking` 모듈을 전달해야 합니다.
 
 ## 📖 API
 
@@ -63,13 +63,9 @@ export default function PaymentWebView() {
 
 URL이 앱 스킴인지 확인합니다.
 
-#### `handleAppScheme(url: string, linking?: LinkingModule): Promise<boolean>`
+#### `shouldLoadURL(url: string, linking: LinkingModule): boolean`
 
-앱 스킴 URL을 처리하여 외부 앱을 엽니다.
-
-#### `shouldLoadURL(url: string, linking?: LinkingModule): Promise<boolean>`
-
-WebView의 `onShouldStartLoadWithRequest` 콜백에서 사용할 수 있는 헬퍼 함수입니다. 앱 스킴 URL을 감지하면 외부 앱을 열고 WebView에서 로드를 중단합니다.
+WebView의 `onShouldStartLoadWithRequest` 콜백에서 사용할 수 있는 헬퍼 함수입니다. 앱 스킴 URL을 감지하면 외부 앱을 열고 WebView에서 로드를 중단합니다. `linking` 파라미터는 필수입니다.
 
 ## ⚙️ 요구사항
 
