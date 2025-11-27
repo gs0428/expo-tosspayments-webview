@@ -5,7 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.0.3] - 2025-11-27
+
+### Added
+
+- `util.ts` 파일 생성 (런타임 유틸리티 함수 분리)
+- `package.json` exports 필드에 `./util` 경로 추가
+
+### Changed
+
+- 플러그인 함수를 `index.ts`로 이동 (기존 `plugin.ts` 내용)
+- 런타임 유틸리티 함수를 `util.ts`로 이동 (기존 `index.ts` 내용)
+- `app.plugin.js`가 `build/index.js`를 참조하도록 변경
+- README에서 런타임 유틸리티 import 경로를 `expo-tosspayments-webview/util`로 변경
+
+### Removed
+
+- `plugin.ts` 파일 제거 (기능은 `index.ts`로 이동)
+
+## [1.0.2] - 2025-11-27
 
 ### Added
 

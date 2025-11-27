@@ -37,7 +37,7 @@ React Native WebView에서 결제 완료 후 앱으로 돌아오기:
 ```tsx
 import { Linking } from "react-native";
 import WebView, { type WebViewNavigation } from "react-native-webview";
-import { shouldLoadURL } from "expo-tosspayments-webview";
+import { shouldLoadURL } from "expo-tosspayments-webview/util";
 
 export default function PaymentWebView() {
   const onShouldStartLoadWithRequest = (request: WebViewNavigation) => {
